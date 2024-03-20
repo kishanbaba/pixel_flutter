@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050479394142",
+    "project_id": "pixelmanagement-ea70d",
+    "storage_bucket": "pixelmanagement-ea70d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050479394142:android:3dccc3fe2556e4d061e3cf",
+        "android_client_info": {
+          "package_name": "com.pixelapp.pixel_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU4I_oYqwIvxT7r6iPak2U_Ev_ls1SFMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
