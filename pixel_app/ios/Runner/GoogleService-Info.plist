@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyAtMskd6OSTQsKd85m1JU8YOQOhkFHV170</string>
+	<string>AIzaSyCujzTw8dUX1nBd3x4VaiWih2CIwDmW51E</string>
 	<key>GCM_SENDER_ID</key>
-	<string>682103290546</string>
+	<string>1050479394142</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.pixelApp</string>
+	<string>com.genxel.pixelApp</string>
 	<key>PROJECT_ID</key>
-	<string>pixel-c6201</string>
+	<string>pixelmanagement-ea70d</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pixel-c6201.appspot.com</string>
+	<string>pixelmanagement-ea70d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:682103290546:ios:3ff681db0fe3be108da7ab</string>
+	<string>1:1050479394142:ios:f86f6981d7b7f34261e3cf</string>
 </dict>
 </plist>
