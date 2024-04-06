@@ -1,4 +1,4 @@
-package com.pixelapp.pixel_app
+package com.genxel.pixelApp
 
 import io.flutter.embedding.android.FlutterActivity
 
