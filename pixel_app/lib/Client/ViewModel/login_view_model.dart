@@ -14,6 +14,7 @@ class LoginViewModel extends GetxController {
     try {
       LoginResponseModel response = await LoginRepo().loginRepo(requestModel);
       apiResponse = ApiResponse.complete(response);
+
       print("LoginResponseModel RES:$response");
     } catch (e) {
       print('LoginResponseModel.....$e');
