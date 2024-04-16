@@ -8,13 +8,13 @@ class LoginViewModel extends GetxController {
   ApiResponse apiResponse = ApiResponse.initial('Initial');
 
   /// register...
-  Future<void> loginViewModel(LoginRequestModel requestModel) async {
+  Future<void> loginViewModel(LoginRequestModel requestModel, String fcmToken) async {
     apiResponse = ApiResponse.loading('Loading');
     // update();
     try {
       LoginResponseModel response = await LoginRepo().loginRepo(requestModel);
       apiResponse = ApiResponse.complete(response);
-
+      await LoginRepo().deviceInsert(userID: response.data?.first.clientId.toString() ?? "", token: fcmToken);
       print("LoginResponseModel RES:$response");
     } catch (e) {
       print('LoginResponseModel.....$e');

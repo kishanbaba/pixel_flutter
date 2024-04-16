@@ -219,7 +219,7 @@ class _MainLoginScreenState extends State<MainLoginScreen> {
                       req.fcm = fcmToken;
                      debugPrint("req---------------= $req");
 
-                     await _loginViewModel.loginViewModel(req);
+                     await _loginViewModel.loginViewModel(req, fcmToken ?? "");
                       if (_loginViewModel.apiResponse.status ==
                           Status.COMPLETE) {
                         LoginResponseModel response =

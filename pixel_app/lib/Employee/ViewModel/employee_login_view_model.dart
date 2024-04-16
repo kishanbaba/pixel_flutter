@@ -9,13 +9,15 @@ class EmployeeLoginViewModel extends GetxController {
 
   /// register...
   Future<void> employeeLoginViewModel(
-      EmployeeLoginRequestModel requestModel) async {
+      EmployeeLoginRequestModel requestModel, String fcmToken) async {
     apiResponse = ApiResponse.loading('Loading');
     // update();
     try {
       EmployeeLoginResponseModel response =
           await EmployeeLoginRepo().employeeLoginRepo(requestModel);
       apiResponse = ApiResponse.complete(response);
+
+      await EmployeeLoginRepo().deviceInsert(userID: response.data?.first.employeeId.toString() ?? "", token: fcmToken);
       print("EmployeeLoginResponseModel RES:$response");
     } catch (e) {
       print('EmployeeLoginResponseModel.....$e');

@@ -219,7 +219,7 @@ class _EmployeeMainLoginScreenState extends State<EmployeeMainLoginScreen> {
                       req.fcm = fcmtoken;
 
                       debugPrint("Login Employer -- $req");
-                      await employeeLoginViewModel.employeeLoginViewModel(req);
+                      await employeeLoginViewModel.employeeLoginViewModel(req, fcmtoken ?? "");
                       if (employeeLoginViewModel.apiResponse.status ==
                           Status.COMPLETE) {
                         EmployeeLoginResponseModel response =

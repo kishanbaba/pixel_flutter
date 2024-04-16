@@ -2,6 +2,7 @@ abstract class BaseService<T> {
   final String baseURL = 'http://api.pixelmanagement.in/api/';
 
   final String employeeLoginUrl = 'EmployeeLogin';
+  final String deviceInsertAPI = 'DeviceInsert';
   final String employeeDeleteUrl = 'EmployeeDelete';
   final String employeeEvents = 'EmployeeEvents';
   final String employeeChangePassword = 'EmployeePasswordChange';

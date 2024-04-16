@@ -16,4 +16,16 @@ class EmployeeLoginRepo extends BaseService {
         EmployeeLoginResponseModel.fromJson(response);
     return employeeLoginResponseModel;
   }
+
+  Future<void> deviceInsert({required String userID, required String token,}) async {
+    // print('Register Req :$body');
+    var body = {
+      "Id": userID,
+      "DeviceId": token,
+      "IsClient": false,
+    };
+    var response = await ApiService().getResponse(
+        apiType: APIType.aPost, url: deviceInsertAPI, body: body);
+    log("deviceInsert :${response}");
+  }
 }

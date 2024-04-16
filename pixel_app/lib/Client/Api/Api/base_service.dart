@@ -1,6 +1,7 @@
 abstract class BaseService<T> {
   final String baseURL = 'http://api.pixelmanagement.in/api/';
   final String loginUrl = 'ClientLogin';
+  final String deviceInsertAPI = 'DeviceInsert';
   final String projectUrl = 'ClientProjects';
   final String clientPayment = 'ClientPayments';
   final String projectClientNoteUpate = 'ProjectClientNoteUpate';
