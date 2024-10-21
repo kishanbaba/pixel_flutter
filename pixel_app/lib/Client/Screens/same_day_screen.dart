@@ -28,7 +28,7 @@ class _SameDayScreenState extends State<SameDayScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-  late final ValueNotifier<List> _selectedEvents;
+  late ValueNotifier<List> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff;
   DateTime _focusedDay = DateTime.now();

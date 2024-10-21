@@ -25,9 +25,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
   TextEditingController searchController = TextEditingController();
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
-  // String lastDate =
-  //     '${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}';
-  String lastDate = '25/07/2022';
+  String lastDate =
+      '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}';
+  // String lastDate = '21/10/2024';
   @override
   void initState() {
     getClientPaymentDetails();
@@ -193,12 +193,23 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       } else if (mode == LoadStatus.failed) {
                         body = Text("Load Failed!Click retry!");
                       } else if (mode == LoadStatus.canLoading) {
-                        print(
-                            '--response.data.tbData.last.dt--${response.data!.tbData!.last.dt?.split('-')}');
+                        // print(
+                        //     '--response.data.tbData.last.dt--${response.data!.tbData!.last.dt?.split('-')}');
 
-                        lastDate =
-                            '${DateTime.now().day}/${response.data!.tbData!.last.dt?.split('-').first}/${response.data!.tbData!.last.dt?.split('-').last}';
-
+                        if(response.data != null) {
+                          lastDate =
+                          '${DateTime
+                              .now()
+                              .day}/${response.data!
+                              .tbData!
+                              .last.dt
+                              ?.split('-')
+                              .first}/${response.data!
+                              .tbData!
+                              .last.dt
+                              ?.split('-')
+                              .last}';
+                        }
                         body = SizedBox();
                       } else {
                         body = Text("No more Data");
