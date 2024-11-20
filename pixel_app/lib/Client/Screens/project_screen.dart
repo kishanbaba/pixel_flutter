@@ -33,6 +33,9 @@ class _ProjectScreenState extends State<ProjectScreen>
   final _formKey = GlobalKey<FormState>();
   TabController? _tabController;
   int pageSize = 25;
+  int finishedProjectPageSize = 25;
+  int recordsTotalFinishProject = 0;
+  int recordsTotalPendingProject = 0;
   @override
   void initState() {
     _tabController = new TabController(length: 2, vsync: this);
@@ -53,16 +56,27 @@ class _ProjectScreenState extends State<ProjectScreen>
   }
 
   void _onLoading() async {
-    // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
-    // if failed,use loadFailed(),if no data return,use LoadNodata()
-    // items.add((items.length + 1).toString());
-    pageSize = pageSize + 25;
-    print('--pageSize--${pageSize}');
-    await getProjectData();
+    int totalRecord = _tabController!.index == 0 ? recordsTotalPendingProject : recordsTotalFinishProject;
+    int projectDataLength =
+        _tabController!.index == 0 ? projectViewModel
+            .pendingProjectApiResponse.data.data!.recordsTotal ?? "" :
+        projectViewModel
+        .finishedProjectApiResponse.data.data!.recordsTotal ?? "";
+    if(totalRecord != projectDataLength) {
+      await Future.delayed(Duration(milliseconds: 1000));
+      pageSize = pageSize + 25;
+      finishedProjectPageSize = finishedProjectPageSize + 25;
+      print('--pageSize--${pageSize}');
 
-    if (mounted) setState(() {});
-    _refreshController.loadComplete();
+      await getProjectData();
+
+      if (mounted) setState(() {});
+      _refreshController.loadComplete();
+
+      print("Footer status --->${_refreshController.footerStatus}");
+    }else{
+      _refreshController.loadNoData();
+    }
   }
 
   Future<void> getProjectData() async {
@@ -82,8 +96,10 @@ class _ProjectScreenState extends State<ProjectScreen>
     req.projectStatus = _tabController!.index;
     req.orderBy = 'Asc';
     req.startRecord = 0;
-    req.pageSize = pageSize;
+    req.pageSize = _tabController!.index == 0 ? pageSize : finishedProjectPageSize;
 
+    print('--pageSize--${pageSize}');
+    print('--finishedProjectPageSize--${finishedProjectPageSize}');
     // req.emailId = _email.text;
     // req.loginPass = _password.text;
 
@@ -295,6 +311,7 @@ class _ProjectScreenState extends State<ProjectScreen>
                   borderRadius:
                       BorderRadius.only(topLeft: Radius.circular(20))),
               child: TabBar(
+                indicatorSize: TabBarIndicatorSize.tab,
                 indicator: BoxDecoration(
                     color: Color(0xFFD9D9D9),
                     borderRadius: BorderRadius.vertical(
@@ -345,6 +362,7 @@ class _ProjectScreenState extends State<ProjectScreen>
                       PendingProjectResponseModel responseModel =
                           projectViewModel.pendingProjectApiResponse.data;
                       pageSize = responseModel.data!.recordsFiltered!;
+                      recordsTotalPendingProject = responseModel.data!.recordsTotal!;
                       return responseModel.data!.recordsFiltered == 0
                           ? Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -1201,7 +1219,8 @@ class _ProjectScreenState extends State<ProjectScreen>
                         Status.COMPLETE) {
                       FinishedProjectResponseModel finishedResponseModel1 =
                           projectViewModel.finishedProjectApiResponse.data;
-                      pageSize = finishedResponseModel1.data!.recordsFiltered!;
+                      finishedProjectPageSize = finishedResponseModel1.data!.recordsFiltered!;
+                      recordsTotalFinishProject = finishedResponseModel1.data!.recordsTotal!;
                       return finishedResponseModel1.data!.recordsFiltered == 0
                           ? Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15),
